@@ -1,0 +1,27 @@
+Options -Indexes
+
+RewriteEngine On
+
+
+RewriteCond %{REQUEST_DIRECTORY} !-d
+RewriteRule ^([^\.]+)$ $1/index.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html|$1.php [NC,L]
+
+RewriteRule ^(debug|test)\.(html|php)|^debug|^test, http://localhost/Re-Dact/test/debug.php [L,R=301]
+RewriteRule ^(dashboard|home)\.(php|html)|^dashboard|^home, http://localhost/Re-Dact/public/ [L,R=301]
+RewriteRule ^(sigin|signup)\.(php|html)|^sign-in|^sign-up, http://localhost/Re-Dact/ [L,R=301]
+RewriteRule ^admin\.(php|html)|^admin, http://localhost/Re-Dact/admin/ [L,R=301]
+# RewriteRule ^signin|^login|^studentlogin|^student, http://localhost/Project/index.php [L,R=301]
+# RewriteRule ^register|^signup, http://localhost/Project/signup.html [L,R=301]
+# RewriteRule ^staff\.html|^stafflogin|^staff, http://localhost/Project/index.php [L,R=301]
+# RewriteRule ^admin\.html|^adminlogin|^admin, http://localhost/Project/validation/admin.html [L,R=301]
+
+ErrorDocument 404 http://localhost/Re-Dact/404.html
+ErrorDocument 403 http://localhost/Re-Dact/403.html
+
+<FilesMatch (^\.|wp-config\.php|php\.ini|\.htaccess)>
+    Order allow,deny
+    Deny from all
+</FilesMatch>
